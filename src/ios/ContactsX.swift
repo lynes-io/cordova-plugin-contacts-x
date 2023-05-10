@@ -82,11 +82,42 @@ import PhoneNumberKit
                 self.returnError(error: ErrorCodes.PermissionDenied);
                 return;
             }
-            let contactPicker = CNContactPickerViewController();
-            contactPicker.delegate = self;
-            self.viewController.present(contactPicker, animated: true, completion: nil)
+//            let contactPicker = CNContactPickerViewController();
+//            contactPicker.delegate = self;
+//            self.viewController.present(contactPicker, animated: true, completion: nil)
+            let newContact = CNMutableContact()
+            let contactVC = CNContactViewController(forNewContact: newContact)
+            contactVC.contactStore = CNContactStore()
+            contactVC.delegate = self
+            let navigationController = UINavigationController(rootViewController: contactVC) //For
+            self.viewController.present(navigationController, animated: true, completion: nil)
         }
     }
+    
+    @objc(create:)
+    func create(command: CDVInvokedUrlCommand) {
+        _callbackId = command.callbackId;
+
+        self.hasPermission { (granted) in
+            guard granted else {
+                self.returnError(error: ErrorCodes.PermissionDenied);
+                return;
+            }
+            
+            let newContact = CNMutableContact()
+            let contactVC = CNContactViewController(forNewContact: newContact)
+            contactVC.contactStore = CNContactStore()
+            contactVC.delegate = self
+            let navigationController = UINavigationController(rootViewController: contactVC) //For
+            self.viewController.present(navigationController, animated: true, completion: nil)
+        }
+    }
+    
+    func contactViewController(_ viewController: CNContactViewController, didCompleteWith contact: CNContact?){
+        
+        self.viewController.dismiss(animated: true)
+    }
+
 
     func contactPicker(_ picker: CNContactPickerViewController, didSelect contact: CNContact) {
         let fields: NSDictionary = [
