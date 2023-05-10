@@ -94,8 +94,8 @@ import PhoneNumberKit
         }
     }
     
-    @objc(create:)
-    func create(command: CDVInvokedUrlCommand) {
+    @objc(createContacts:)
+    func createContacts(command: CDVInvokedUrlCommand) {
         _callbackId = command.callbackId;
 
         self.hasPermission { (granted) in

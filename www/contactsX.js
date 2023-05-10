@@ -37,7 +37,7 @@ var contactsX = {
   },
 
   createContacts: function (success, error, options) {
-    exec(success, error, 'ContactsX', 'create', [options]);
+    exec(success, error, 'ContactsX', 'createContacts', [options]);
   },
 }
 
