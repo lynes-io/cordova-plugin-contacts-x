@@ -16,7 +16,9 @@ import PhoneNumberKit
     func find(command: CDVInvokedUrlCommand) {
         _callbackId = command.callbackId;
         let options = ContactsXOptions(options: command.argument(at: 0) as? NSDictionary);
-        
+        options.phoneNumbers = true
+        options.emails = true
+    
         self.commandDelegate.run {
             let store = CNContactStore();
             self.hasPermission { (granted) in
@@ -44,6 +46,7 @@ import PhoneNumberKit
                 for contact in contacts {
                     resultArray.append(contact.getJson());
                 }
+                
                 let result:CDVPluginResult = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: resultArray);
                 self.commandDelegate.send(result, callbackId: self._callbackId)
             }
