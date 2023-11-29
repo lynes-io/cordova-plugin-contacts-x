@@ -34,7 +34,11 @@ var contactsX = {
 
   requestWritePermission: function (success, error) {
     exec(success, error, 'ContactsX', 'requestPermission', [true]);
-  }
+  },
+
+  createContacts: function (success, error, options) {
+    exec(success, error, 'ContactsX', 'createContacts', [options]);
+  },
 }
 
 module.exports = contactsX;
