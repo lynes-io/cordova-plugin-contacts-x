@@ -4,7 +4,7 @@ class ContactsXOptions {
     var middleName: Bool = true;
     var familyName: Bool = true;
     var organizationName: Bool = true;
-    var phoneNumbers: Bool = false;
+    var phoneNumbers: Bool = true;
     var emails: Bool = false;
     var baseCountryCode : String?? = nil;
 
