@@ -42,6 +42,9 @@
 				<pod name="PhoneNumberKit" spec="~> 3.3" />
 			</pods>
 		</podspec>
+		<config-file target="*-Info.plist" parent="NSContactsUsageDescription">
+			<string>We would like to put your device contacts into app contact list for easier call handling. We do not upload your contacts to server. They only persist in local app storage.</string>
+		</config-file>
 
         <dependency id="cordova-plugin-add-swift-support" version="2.0.2" />
 	</platform>
